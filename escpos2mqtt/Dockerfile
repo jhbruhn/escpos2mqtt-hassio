@@ -1,14 +1,6 @@
+FROM ghcr.io/jhbruhn/escpos2mqtt:main as escpos2mqtt
+
 ARG BUILD_FROM
-
-FROM $BUILD_FROM AS build
-
-RUN apk add --no-cache git rust cargo
-
-
-WORKDIR /app
-RUN git clone https://github.com/jhbruhn/escpos2mqtt.git
-
-RUN cd escpos2mqtt && git checkout main && cargo build --release
 
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
 FROM $BUILD_FROM
@@ -22,4 +14,4 @@ RUN \
 # Copy root filesystem
 COPY rootfs /
 
-COPY --from=build /app/escpos2mqtt/target/release/escpos2mqtt /usr/bin/escpos2mqtt
+COPY --from=escpos2mqtt /usr/src/app/escpos2mqtt /usr/bin/escpos2mqtt
