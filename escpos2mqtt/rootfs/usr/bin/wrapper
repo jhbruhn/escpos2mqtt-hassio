@@ -9,4 +9,32 @@ MQTT_PASSWORD=$(bashio::services mqtt "password")
 
 export MQTT_URL=mqtt://${MQTT_USER}:${MQTT_PASSWORD}@${MQTT_HOST}/
 
-/usr/bin/escpos2mqtt
+export RUST_LOG=info
+
+# Find the matching log level
+if bashio::config.has_value 'log_level'; then
+    case "$(bashio::string.lower "$(bashio::config 'log_level')")" in
+        all|trace)
+            log_level="trace"
+            ;;
+        debug)
+            log_level="debug"
+            ;;
+        info|notice)
+            log_level="info"
+            ;;
+        warning)
+            log_level="warn"
+            ;;
+        error|fatal)
+            log_level="error"
+            ;;
+        off)
+            log_level="off"
+            ;;
+    esac
+
+    export RUST_LOG="${log_level}"
+fi
+
+exec /usr/bin/escpos2mqtt
