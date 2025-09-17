@@ -8,7 +8,7 @@ RUN apk add --no-cache git rust cargo
 WORKDIR /app
 RUN git clone https://github.com/jhbruhn/escpos2mqtt.git
 
-RUN cd escpos2mqtt && git checkout main &&cargo build --release
+RUN cd escpos2mqtt && git checkout main && cargo build --release
 
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
 FROM $BUILD_FROM
