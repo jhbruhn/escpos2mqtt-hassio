@@ -1,3 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bashio
+
+PRINTER_HOST=$(bashio::config 'printer_host')
+PRINTER_NAME=$(bashio::config 'printer_name' 'printer')
+
+MQTT_HOST=$(bashio::services mqtt "host")
+MQTT_USER=$(bashio::services mqtt "username")
+MQTT_PASSWORD=$(bashio::services mqtt "password")
+
+MQTT_URL=mqtt://${MQTT_USER}:${MQTT_PASSWORD}@${MQTT_HOST}/
 
 /usr/bin/escpos2mqtt

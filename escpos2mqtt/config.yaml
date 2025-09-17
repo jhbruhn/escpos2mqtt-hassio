@@ -12,7 +12,9 @@ init: false
 #map:
 #  - share:rw
 options:
-  message: "Hello world..."
+  printer_host: ""
+  printer_name: "printer"
 schema:
-  message: "str?"
+  printer_host: "str"
+  printer_name: "str?"
 image: "ghcr.io/jhbruhn/{arch}-escpos2mqtt-hassio"
