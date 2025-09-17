@@ -17,4 +17,6 @@ options:
 schema:
   printer_host: "str"
   printer_name: "str?"
+services:
+  - mqtt:need
 image: "ghcr.io/jhbruhn/{arch}-escpos2mqtt-hassio"
