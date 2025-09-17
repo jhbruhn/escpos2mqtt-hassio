@@ -1,4 +1,7 @@
 configuration:
-  message:
-    name: Message
-    description: The message that will be printed to the log when starting this example add-on.
+  printer_host:
+    name: Printer Host
+    description: Hostname or IP Address of the ESC/POS compatile printer.
+  printer_name:
+    name: Printer Name
+    description: Name that the printer should be addressed with via MQTT. Should only be alphanumerical without spaces or special characters.
