@@ -15,7 +15,7 @@ RUN \
 COPY rootfs /
 
 RUN apt-get update \
-    && apt-get install -y ca-certificates tzdata fonts-freefont-ttf \
+    && apt-get install -y ca-certificates fontconfig fonts-freefont-ttf \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=escpos /usr/src/app/escpos2mqtt /usr/bin/escpos2mqtt
