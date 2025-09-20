@@ -106,13 +106,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Set version and update release
-        run: |
-          jq '.version = $date' --arg date $(date +%Y%m%d-%H%M%S) escpos2mqtt/config.json > escpos2mqtt/config.json.tmp
-          mv escpos2mqtt/config.json.tmp escpos2mqtt/config.json
-      - uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "edge update"
+
       - name: Build ${{ matrix.addon }} add-on
         if: steps.check.outputs.build_arch == 'true'
         uses: home-assistant/builder@2025.09.0
@@ -124,3 +118,17 @@ jobs:
             --image "${{ steps.check.outputs.image }}" \
             --docker-hub "ghcr.io/${{ github.repository_owner }}" \
             --addon
+
+  version:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Set version and update release
+        run: |
+          jq '.version = $date' --arg date $(date +%Y%m%d-%H%M%S) escpos2mqtt/config.json > escpos2mqtt/config.json.tmp
+          mv escpos2mqtt/config.json.tmp escpos2mqtt/config.json
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "edge update"
