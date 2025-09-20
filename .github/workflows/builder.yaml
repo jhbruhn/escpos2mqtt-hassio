@@ -59,7 +59,7 @@ jobs:
           else
             echo "No add-on had any monitored files changed (${{ env.MONITORED_FILES }})";
           fi
-      - name: Set version and update release
+      - name: Set version
         id: version
         run: |
           export date=$(date -u +%Y%m%d-%H%M%S)
@@ -83,7 +83,11 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v5.0.0
-
+      - name: Set version and update release
+        id: version
+        run: |
+          jq '.version = $date' --arg date ${{ needs.init.outputs.version }} escpos2mqtt/config.json > escpos2mqtt/config.json.tmp
+          mv escpos2mqtt/config.json.tmp escpos2mqtt/config.json
       - name: Get information
         id: info
         uses: home-assistant/actions/helpers/info@master
