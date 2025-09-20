@@ -5,12 +5,6 @@ configuration:
   printer_name:
     name: Printer Name
     description: Name that the printer should be addressed with via MQTT. Should only be alphanumerical without spaces or special characters.
-  printer_dpi:
-    name: DPI
-    description: DPI the software should use when rendering SVG images
-  printer_chars_per_line:
-    name: Characters per Line
-    description: How many characters of default size font fit into a line. Used for determining the width of rendered images or word-wraps.
-  printer_pixels_per_char:
-    name: Pixels per Character
-    description: How many pixels a character of the default size font uses. Used for determining the width of rendered images or word-wraps.
+  printer_model:
+    name: Printer Model
+    description: Model name of the printer, according to the escpos-printer-db. Startup of the service will fail if no correct name is specified. Default is 'default'.

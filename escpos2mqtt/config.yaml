@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 name: escpos2mqtt
-version: "0.1.9"
+version: "0.1.10"
 slug: escpos2mqtt
 description: escpos2mqtt add-on
 url: "https://github.com/jhbruhn/escpos2mqtt"
@@ -14,12 +14,11 @@ init: false
 options:
   printer_host: ""
   printer_name: "printer"
+  printer_model: "TM-T88V"
 schema:
   printer_host: "str"
   printer_name: "str?"
-  printer_dpi: "float?"
-  printer_chars_per_line: "int?"
-  printer_pixels_per_char: "int?"
+  printer_model: "str?"
 services:
   - mqtt:need
 image: "ghcr.io/jhbruhn/{arch}-escpos2mqtt-hassio"
