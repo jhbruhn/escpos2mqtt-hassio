@@ -65,7 +65,7 @@ jobs:
         run: |
           echo "Overriding changed addons to all!";
           echo "changed=true" >> $GITHUB_OUTPUT;
-          echo "addons=${{ steps.addons.outputs.addons }}" >> $GITHUB_OUTPUT;
+          echo "addons=[${{ steps.addons.outputs.addons }}]" >> $GITHUB_OUTPUT;
   build:
     needs: init
     runs-on: ubuntu-latest
