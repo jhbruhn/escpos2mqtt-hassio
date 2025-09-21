@@ -1,6 +1,6 @@
 {
   "name": "escpos2mqtt",
-  "version": "20250920-225032",
+  "version": "20250921-112652",
   "slug": "escpos2mqtt",
   "description": "escpos2mqtt add-on",
   "url": "https://github.com/jhbruhn/escpos2mqtt",
