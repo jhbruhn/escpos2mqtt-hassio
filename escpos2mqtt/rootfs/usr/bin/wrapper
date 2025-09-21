@@ -1,7 +1,7 @@
 #!/usr/bin/env bashio
 
 export PRINTER_HOST=$(bashio::config 'printer_host')
-export PRINTER_NAME=$(bashio::config 'printer_name' 'printer')
+export PRINTER_MODEL=$(bashio::config 'printer_model' 'default')
 
 MQTT_HOST=$(bashio::services mqtt "host")
 MQTT_USER=$(bashio::services mqtt "username")
