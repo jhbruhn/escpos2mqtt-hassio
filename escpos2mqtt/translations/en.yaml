@@ -2,9 +2,6 @@ configuration:
   printer_host:
     name: Printer Host
     description: Hostname or IP Address of the ESC/POS compatile printer.
-  printer_name:
-    name: Printer Name
-    description: Name that the printer should be addressed with via MQTT. Should only be alphanumerical without spaces or special characters.
   printer_model:
     name: Printer Model
     description: Model name of the printer, according to the escpos-printer-db. Startup of the service will fail if no correct name is specified. Default is 'default'.
