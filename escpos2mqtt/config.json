@@ -21,6 +21,6 @@
   "services": [
     "mqtt:need"
   ],
-  "network_host": true,
+  "host_network": true,
   "image": "ghcr.io/jhbruhn/{arch}-escpos2mqtt-hassio"
 }
