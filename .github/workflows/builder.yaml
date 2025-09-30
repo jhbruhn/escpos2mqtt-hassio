@@ -9,6 +9,10 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      tag:
+        required: true
+        description: Source tag to build this addon against.
 
 jobs:
   init:
@@ -17,7 +21,6 @@ jobs:
     outputs:
       changed_addons: ${{ steps.changed_addons.outputs.addons }}
       changed: ${{ steps.changed_addons.outputs.changed }}
-      version: ${{ steps.version.outputs.date }}
     steps:
       - name: Check out the repository
         uses: actions/checkout@v5.0.0
@@ -56,13 +59,6 @@ jobs:
           else
             echo "No add-on had any monitored files changed (${{ env.MONITORED_FILES }})";
           fi
-      - name: Set version
-        id: version
-        run: |
-          export date=$(date -u +%Y%m%d-%H%M%S)
-          echo "date=$date" >> $GITHUB_OUTPUT;
-          jq '.version = $date' --arg date $date escpos2mqtt/config.json > escpos2mqtt/config.json.tmp
-          mv escpos2mqtt/config.json.tmp escpos2mqtt/config.json
 
   build:
     needs: init
@@ -83,8 +79,10 @@ jobs:
       - name: Set version and update release
         id: version
         run: |
-          jq '.version = $date' --arg date ${{ needs.init.outputs.version }} escpos2mqtt/config.json > escpos2mqtt/config.json.tmp
+          jq '.version = $version' --arg version ${{ inputs.tag }} escpos2mqtt/config.json > escpos2mqtt/config.json.tmp
           mv escpos2mqtt/config.json.tmp escpos2mqtt/config.json
+          echo "  FROM_VERSION: '${{ inputs.tag }}'" >> escpos2mqtt/build.yaml
+
       - name: Get information
         id: info
         uses: home-assistant/actions/helpers/info@master
@@ -139,7 +137,7 @@ jobs:
       - name: Set version and update release
         id: version
         run: |
-          jq '.version = $date' --arg date ${{ needs.init.outputs.version }} escpos2mqtt/config.json > escpos2mqtt/config.json.tmp
+          jq '.version = $version' --arg version ${{ inputs.tag }} escpos2mqtt/config.json > escpos2mqtt/config.json.tmp
           mv escpos2mqtt/config.json.tmp escpos2mqtt/config.json
 
       - uses: stefanzweifel/git-auto-commit-action@v6
