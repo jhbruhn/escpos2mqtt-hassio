@@ -1,0 +1,22 @@
+{
+  "name": "escpos2mqtt",
+  "version": "20250930-203557",
+  "slug": "escpos2mqtt",
+  "description": "escpos2mqtt add-on",
+  "url": "https://github.com/jhbruhn/escpos2mqtt",
+  "arch": ["armv7", "aarch64", "amd64"],
+  "init": false,
+  "options": {
+    "manual_printer_host": "",
+    "manual_printer_model": "default",
+    "default_printer_model": "default"
+  },
+  "schema": {
+    "manual_printer_host": "str?",
+    "manual_printer_model": "str?",
+    "default_printer_model": "str?"
+  },
+  "services": ["mqtt:need"],
+  "host_network": true,
+  "image": "ghcr.io/jhbruhn/{arch}-escpos2mqtt-hassio"
+}
