@@ -1,5 +1,5 @@
 ARG BUILD_FROM
-
+ARG FROM_VERSION
 FROM ghcr.io/jhbruhn/escpos2mqtt:${FROM_VERSION} AS escpos
 
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
