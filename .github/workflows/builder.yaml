@@ -79,7 +79,7 @@ jobs:
       - name: Set version and update release
         id: version
         run: |
-          jq '.version = $version' --arg version ${{ inputs.tag }} escpos2mqtt/config.json > escpos2mqtt/config.json.tmp
+          jq '.version = $version' --arg version edge-${{ inputs.tag }} escpos2mqtt/config.json > escpos2mqtt/config.json.tmp
           mv escpos2mqtt/config.json.tmp escpos2mqtt/config.json
           echo "  FROM_VERSION: '${{ inputs.tag }}'" >> escpos2mqtt/build.yaml
           cat escpos2mqtt/build.yaml
@@ -138,7 +138,7 @@ jobs:
       - name: Set version and update release
         id: version
         run: |
-          jq '.version = $version' --arg version ${{ inputs.tag }} escpos2mqtt/config.json > escpos2mqtt/config.json.tmp
+          jq '.version = $version' --arg version edge-${{ inputs.tag }} escpos2mqtt/config.json > escpos2mqtt/config.json.tmp
           mv escpos2mqtt/config.json.tmp escpos2mqtt/config.json
 
       - uses: stefanzweifel/git-auto-commit-action@v6
