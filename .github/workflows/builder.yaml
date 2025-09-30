@@ -82,6 +82,7 @@ jobs:
           jq '.version = $version' --arg version ${{ inputs.tag }} escpos2mqtt/config.json > escpos2mqtt/config.json.tmp
           mv escpos2mqtt/config.json.tmp escpos2mqtt/config.json
           echo "  FROM_VERSION: '${{ inputs.tag }}'" >> escpos2mqtt/build.yaml
+          cat escpos2mqtt/build.yaml
 
       - name: Get information
         id: info
