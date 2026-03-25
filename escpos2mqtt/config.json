@@ -5,7 +5,6 @@
   "description": "escpos2mqtt add-on",
   "url": "https://github.com/jhbruhn/escpos2mqtt",
   "arch": [
-    "armv7",
     "aarch64",
     "amd64"
   ],
