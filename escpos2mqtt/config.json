@@ -1,6 +1,6 @@
 {
   "name": "escpos2mqtt",
-  "version": "edge-20260326-143212",
+  "version": "edge-20260326-143710",
   "slug": "escpos2mqtt",
   "description": "escpos2mqtt add-on",
   "url": "https://github.com/jhbruhn/escpos2mqtt",
